@@ -32,7 +32,7 @@ module.exports = [
     name: 'Sister Fate',
     alive: true,
     category: 'Romance 1600',
-    year: 1958
+    year: 1985
   },
   {
     alias: 'Shiela E.',
