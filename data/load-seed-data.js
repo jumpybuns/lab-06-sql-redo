@@ -22,7 +22,18 @@ async function run() {
         [user.email, user.hash]);
       })
     );
-      
+
+    await Promise.all(
+      categories.map(category => {
+        return client.query(`
+                    INSERT INTO category (category)
+                    VALUES ($1)
+                    RETURNING *
+                `,
+        [category.category]);
+      })
+    );
+  
     const user = users[0].rows[0];
 
     await Promise.all(
@@ -32,16 +43,6 @@ async function run() {
                     VALUES ($1, $2, $3, $4, $5, $6);
                 `,
         [user.id, shiela.alias, shiela.name, shiela.alive, shiela.category_id, shiela.year]);
-      })
-    );
-    await Promise.all(
-      categories.map(category => {
-        return client.query(`
-                    INSERT INTO categories (category)
-                    VALUES ($1);
-                    RETURING *;
-                `,
-        [category.category]);
       })
     );
 
