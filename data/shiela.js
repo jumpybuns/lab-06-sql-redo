@@ -3,49 +3,49 @@ module.exports = [
     alias: 'Shiela E.',
     name: 'A Love Bizarre',
     alive: true,
-    category: 'Romance 1600',
+    category_id: 1,
     year: 1985
   },
   {
     alias: 'Shiela E.',
     name: 'Koo Koo',
     alive: false,
-    category: 'Shiela E.',
+    category_id: 2,
     year: 1987
   },
   {
     alias: 'Shiela E.',
     name: 'Love On a Blue Train',
     alive: false,
-    category: 'Shiela E.',
+    category_id: 2,
     year: 1987
   },
   {
     alias: 'Shiela E.',
     name: 'Lemon Cake',
     alive: true,
-    category: 'Lemon Cake',
+    category_id: 3,
     year: 2020
   },
   {
     alias: 'Shiela E.',
     name: 'Sister Fate',
     alive: true,
-    category: 'Romance 1600',
+    category_id: 1,
     year: 1985
   },
   {
     alias: 'Shiela E.',
     name: 'Holly Rock',
     alive: false,
-    category: 'Krush Groove',
+    category_id: 4,
     year: 1985
   },
   {
     alias: 'Shiela E.',
     name: 'Oliver House',
     alive: true,
-    category: 'The Glamorous Life',
+    category_id: 5,
     year: 1984
   }
   
