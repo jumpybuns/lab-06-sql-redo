@@ -61,7 +61,7 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
-    test.only('adds a song to the DB and returns it', async() => {
+    test('adds a song to the DB and returns it', async() => {
       const expectation =     {
         'id': 8,
         'alias': 'Shiela E.',
@@ -95,38 +95,61 @@ describe('app routes', () => {
     });
 
 
-    // test('adds a route for updating a resource, returns resound from db', async() => {
-    //   const expectation =     {
-    //     'id': 1,
-    //     'alias': 'Shiela E.',
-    //     'name': 'A Love Bizarre',
-    //     'alive': true,
-    //     'category': 'Romance 1600',
-    //     'year': 1985,
-    //     'user_id': 1,
-    //   };
-    //   const data = await fakeRequest(app)
-    //     .post('/shielas')
-    //     .send({
-    //       'id': 1,
-    //       'alias': 'Shiela E.',
-    //       'name': 'A Love Bizarre',
-    //       'alive': true,
-    //       'category': 'Romance 1600',
-    //       'year': 1985,
-    //       'user_id': 1,
-    //     })
-    //     .expect('Content-Type', /json/)
-    //     .expect(200);
+    test('deletes a resource, returns respond from db', async() => {
+      const expectation =     {
+        'id': 1,
+        'alias': 'Shiela E.',
+        'name': 'A Love Bizarre',
+        'alive': true,
+        'category': 'Romance 1600',
+        'year': 1985,
+        'user_id': 1,
+      };
+      const data = await fakeRequest(app)
+        .put('/shielas/1')
+        .send({
+          'alias': 'Shiela E.',
+          'name': 'A Love Bizarre',
+          'alive': true,
+          'category': 'Romance 1600',
+          'year': 1985,
+          'user_id': 1,
+        })
+        .expect('Content-Type', /json/)
+        .expect(200);
 
-    //   const allShielas = await fakeRequest(app)
-    //     .get('/shielas')
-    //     .expect('Content-Type', /json/)
-    //     .expect(200);
+      const allShielas = await fakeRequest(app)
+        .get('/shielas')
+        .expect('Content-Type', /json/)
+        .expect(200);
 
 
-    //   expect(data.body).toEqual(expectation);
-    //   expect(allShielas.body.length).toEqual(4);
-    // });
+      expect(data.body).toEqual(expectation);
+      expect(allShielas.body.length).toEqual(7);
+    });
+    test.only('adds a route for updating a resource, returns respond from db', async() => {
+      const expectation =     {
+        'id': 1,
+        'alias': 'Shiela E.',
+        'name': 'A Love Bizarre',
+        'alive': true,
+        'category': 'Romance 1600',
+        'year': 1985,
+        'user_id': 1,
+      };
+      const data = await fakeRequest(app)
+        .delete('/shielas/1')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const allShielas = await fakeRequest(app)
+        .get('/shielas')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+
+      expect(data.body).toEqual(expectation);
+      expect(allShielas.body.length).toEqual(6);
+    });
   });
 });
