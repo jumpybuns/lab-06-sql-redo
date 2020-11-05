@@ -39,10 +39,10 @@ async function run() {
     await Promise.all(
       shielas.map(shiela => {
         return client.query(`
-                    INSERT INTO shielas (user_id, alias, name, alive, category_id, year)
+                    INSERT INTO shielas (user_id, alias, name, alive, year, category_id)
                     VALUES ($1, $2, $3, $4, $5, $6);
                 `,
-        [user.id, shiela.alias, shiela.name, shiela.alive, shiela.category_id, shiela.year]);
+        [user.id, shiela.alias, shiela.name, shiela.alive, shiela.year, shiela.category_id]);
       })
     );
 
