@@ -17,7 +17,7 @@ async function run() {
         return client.query(`
                       INSERT INTO users (email, hash)
                       VALUES ($1, $2)
-                      RETURNING *
+                      RETURNING *;
                   `,
         [user.email, user.hash]);
       })
@@ -26,9 +26,9 @@ async function run() {
     await Promise.all(
       categories.map(category => {
         return client.query(`
-                    INSERT INTO category (category)
+                    INSERT INTO categories (category)
                     VALUES ($1)
-                    RETURNING *
+                    RETURNING *;
                 `,
         [category.category]);
       })

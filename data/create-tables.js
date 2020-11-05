@@ -17,7 +17,7 @@ async function run() {
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
                 );
-                CREATE TABLE category (
+                CREATE TABLE categories (
                   id SERIAL PRIMARY KEY NOT NULL,
                   category VARCHAR(512) NOT NULL
             );           
@@ -28,7 +28,7 @@ async function run() {
                   name VARCHAR(512) NOT NULL,
                   alive BOOLEAN NOT NULL,
                   year INTEGER NOT NULL,
-                  category_id INTEGER NOT NULL REFERENCES category(id)
+                  category_id INTEGER NOT NULL REFERENCES category
 
             );
         `);
