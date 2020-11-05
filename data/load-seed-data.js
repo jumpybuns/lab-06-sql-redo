@@ -1,6 +1,7 @@
 const client = require('../lib/client');
 // import our seed data:
 const shielas = require('./shiela.js');
+const categories = require('./category.js');
 const usersData = require('./users.js');
 const { getEmoji } = require('../lib/emoji.js');
 
@@ -21,19 +22,29 @@ async function run() {
         [user.email, user.hash]);
       })
     );
-      
+
+    await Promise.all(
+      categories.map(category => {
+        return client.query(`
+                    INSERT INTO categories (category)
+                    VALUES ($1)
+                    RETURNING *;
+                `,
+        [category.category]);
+      })
+    );
+  
     const user = users[0].rows[0];
 
     await Promise.all(
       shielas.map(shiela => {
         return client.query(`
-                    INSERT INTO shielas (user_id, alias, name, alive, category, year)
+                    INSERT INTO shielas (user_id, alias, name, alive, year, category_id)
                     VALUES ($1, $2, $3, $4, $5, $6);
                 `,
-        [user.id, shiela.alias, shiela.name, shiela.alive, shiela.category, shiela.year]);
+        [user.id, shiela.alias, shiela.name, shiela.alive, shiela.year, shiela.category_id]);
       })
     );
-    
 
     console.log('seed data load complete', getEmoji(), getEmoji(), getEmoji());
   }

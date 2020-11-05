@@ -16,15 +16,20 @@ async function run() {
                     id SERIAL PRIMARY KEY,
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
-                );           
+                );
+                CREATE TABLE categories (
+                  id SERIAL PRIMARY KEY NOT NULL,
+                  category VARCHAR(512) NOT NULL
+            );           
                 CREATE TABLE shielas (
                   id SERIAL PRIMARY KEY NOT NULL,
                   user_id INTEGER NOT NULL REFERENCES users(id),
                   alias VARCHAR(512) NOT NULL,
                   name VARCHAR(512) NOT NULL,
                   alive BOOLEAN NOT NULL,
-                  category VARCHAR(512) NOT NULL,
-                  year INTEGER NOT NULL
+                  year INTEGER NOT NULL,
+                  category_id INTEGER NOT NULL REFERENCES category
+
             );
         `);
 
